@@ -10,7 +10,7 @@ function HomeBanner() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full"
           style={{ backgroundImage: `url(${tangoHero})` }}
         ></div>
 
@@ -60,19 +60,6 @@ function HomeBanner() {
           </div>
         </div>
       </section>
-
-      <Container className="mt-10">
-        <div className="flex flex-col items-center justify-center gap-5">
-          <Title className="uppercase text-3xl md:text-4xl font-bold text-center  text-black">
-            Nuestras Clases
-          </Title>
-          <p className="text-sm text-center text-lightColor/80 font-medium max-w-[480px] ">
-            Ofrecemos clases para todos los niveles, desde principiantes hasta
-            avanzados. Cada clase está diseñada para brindarte la mejor
-            experiencia de aprendizaje.
-          </p>
-        </div>
-      </Container>
     </>
   );
 }
