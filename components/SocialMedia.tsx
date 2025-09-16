@@ -42,9 +42,12 @@ function SocialMedia({ className, iconClassName, tooltipClassName }: Props) {
             <TooltipTrigger asChild>
               <Link
                 href={item.href}
-                className={cn(
-                  "p-2 border rounded-full hover:text-white  hover:border-white hoverEffect"
-                )}
+                className={
+                  (cn(
+                    "p-2 border rounded-full hover:text-white  hover:border-white hoverEffect"
+                  ),
+                  iconClassName)
+                }
               >
                 {item.icon}
               </Link>

@@ -5,6 +5,9 @@ import Title from "./Title";
 import HomeTabbar from "./HomeTabbar";
 import { client } from "@/sanity/lib/client";
 import { Product } from "@/sanity.types";
+import ProductCard from "./ProductCard";
+import { motion, AnimatePresence } from "motion/react";
+import { Loader2 } from "lucide-react";
 
 const productType = [
   { title: "Course", value: "courses" },
@@ -55,9 +58,27 @@ function ProductGrid() {
       <Container className="flex flex-col items-center ">
         <HomeTabbar selectedTab={selectedTab} onTabSelect={setSelectedTab} />
         {loading ? (
-          <div>cargando...</div>
+          <div className="flex flex-col items-center justify-center py-10 min-h-80 space-y-4 text-center bg-gray-100 w-full">
+            <motion.div className="flex items-center justify-center space-x-2">
+              <Loader2 className="w-5 w-5 animate-spin"></Loader2>
+              <span>LOADING...</span>
+            </motion.div>
+          </div>
         ) : (
-          products?.map((item: Product, i) => <p key={i}>{item?.name}</p>)
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10 w-full">
+            {products?.map((product: Product, i) => (
+              <AnimatePresence key={i}>
+                <motion.div
+                  layout
+                  initial={{ opacity: 0.2 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <ProductCard product={product} />
+                </motion.div>
+              </AnimatePresence>
+            ))}
+          </div>
         )}
       </Container>
     </>
