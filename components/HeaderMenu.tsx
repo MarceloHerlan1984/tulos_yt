@@ -6,7 +6,7 @@ import React from "react";
 
 function HeaderMenu() {
   const data = [
-    { title: "About", href: "/" },
+    { title: "About", href: "/about" },
     { title: "Lessons", href: "/lessons" },
     { title: "Parties", href: "/parties" },
     { title: "Online", href: "/online" },

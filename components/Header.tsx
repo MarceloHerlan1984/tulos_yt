@@ -17,12 +17,13 @@ import {
 } from "@clerk/nextjs";
 
 import Link from "next/link";
+import { getAllCategories } from "@/sanity/helpers/queries";
 
 function Header() {
   const { isSignedIn, user, isLoaded } = useUser();
 
   return (
-    <header className=" border-b border-b-gry-400 py-5">
+    <header className=" border-b border-b-gry-400 py-5 sticky top-0 z-50 bg-white">
       <Container className="flex items-center justify-between gap-7">
         <HeaderMenu />
         <div className="w-auto md:w-1/2 items-center gap-3  flex">

@@ -11,6 +11,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Tango School in Helsinki | Amor del Tango",
@@ -76,6 +77,12 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: { background: "#000000", color: "#ffffff" },
+            }}
+          />
         </body>
       </html>
     </ClerkProvider>
