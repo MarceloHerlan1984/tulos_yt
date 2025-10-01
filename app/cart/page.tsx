@@ -20,6 +20,10 @@ import toast from "react-hot-toast";
 import PriceFormatter from "@/components/PriceFormatter";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import {
+  createCheckoutSession,
+  Metadata,
+} from "@/actions/createCheckuotSession";
 
 function Cart() {
   const [isClient, setIsClient] = useState(false);
@@ -62,18 +66,21 @@ function Cart() {
     }
   };
 
-  const handleCheckOut = () => {
+  const handleCheckOut = async () => {
     setLoading(true);
     try {
-      const metadata = {
+      const metadata: Metadata = {
         orderNumber: crypto.randomUUID(),
         customerName: user?.fullName ?? "unknown",
         customerEmail: user?.emailAddresses[0]?.emailAddress ?? "unknown",
-        clerkUserId: user?.id,
+        clerkUserId: user!.id,
       };
 
-      const checkoutUrl=
+      const checkoutUrl = await createCheckoutSession(cartProducts, metadata);
 
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      }
     } catch (error) {
       console.log("error in check out", error);
     } finally {
